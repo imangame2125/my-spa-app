@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     navigate('/login')
   }
   return (
-    <footer className="bg-gray-800 text-white py-4">
+    <footer className="bg-gray-800 text-white py-4 rounded-lg fixed bottom-0 w-full">
       <div className="container mx-auto text-center">
         <ul className="flex items-center justify-around">
           <li>

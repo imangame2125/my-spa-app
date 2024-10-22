@@ -33,14 +33,14 @@ const navigate  = useNavigate()
   };
 
   return (
-    <section className=" min-h-screen flex items-center justify-center flex-col">
+    <section className=" min-h-screen flex items-center justify-center flex-col mx-4">
       <div className="w-full flex mb-20 justify-center">
         <img src={Logo} alt="logo" className="w-full  rounded-lg" />
       </div>
       <p className="text-base font-normal mb-4">
         .به سامانه احراز هویت راین خوش آمدید
       </p>
-      <div className="rounded-lg shadow-md">
+      <div className="rounded-lg shadow-md" >
           <input
             type="text"
             value={username}
