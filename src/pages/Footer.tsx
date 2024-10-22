@@ -1,7 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const navigate = useNavigate()
+
+  const handldeLogOut = ()=>{
+    navigate('/login')
+  }
   return (
     <footer className="bg-gray-800 text-white py-4">
       <div className="container mx-auto text-center">
@@ -16,6 +21,7 @@ const Footer: React.FC = () => {
           <li>
           <Link to='/sub-systems'>ساب سیستم ها</Link>
           </li>
+          <li onClick={handldeLogOut}>خروج</li>
         </ul>
       </div>
     </footer>
