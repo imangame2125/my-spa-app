@@ -2,8 +2,8 @@ import React from 'react'
 
 const Users = () => {
   return (
-    <div>
-      کاربران
+    <div className=''>
+     <p>imangame</p>
     </div>
   )
 }

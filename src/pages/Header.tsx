@@ -9,7 +9,7 @@ const Header: FC = () => {
     navigate('/')
   }
   return (
-    <header className="bg-blue-600 text-white py-4 rounded-lg	w-full fixed top-0">
+    <header className="bg-blue-600 text-white py-2 rounded-lg	w-full fixed top-0">
       <div className=" flex justify-between items-center mx-4">
         <Link onClick={handleNavigateHome} to="/" className="text-lg font-bold">درباره ما</Link>
         <nav className="flex items-center gap-x-2">
