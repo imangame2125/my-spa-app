@@ -1,21 +1,24 @@
-import React, { FC } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Image from '../../assests/images/logo-logo.png'
+import React, { FC } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Image from "../../assests/images/logo-logo.png";
 
 const Header: FC = () => {
-
   const navigate = useNavigate();
-  
-  const handleNavigateHome = ()=>{
-    navigate('/')
-  }
+
+  const handleNavigateHome = () => {
+    navigate("/");
+  };
   return (
-    <header className="bg-blue-600 text-white py-2 rounded-lg	w-full fixed top-0">
-      <div className=" flex justify-between items-center mx-4">
-        <Link  to="/" className="text-lg font-bold">درباره ما</Link>
+    <header className="py-2 rounded-lg w-full fixed top-0">
+      <div className=" flex justify-between items-center mx-4  flex-row-reverse">
         <nav className="flex items-center gap-x-2">
           <Link to="/"></Link>
-         <img onClick={handleNavigateHome} src={Image} alt="" className='w-10 h-10' />
+          <img
+            onClick={handleNavigateHome}
+            src={Image}
+            alt=""
+            className="w-10 h-10"
+          />
         </nav>
       </div>
     </header>
@@ -23,4 +26,3 @@ const Header: FC = () => {
 };
 
 export default Header;
-  

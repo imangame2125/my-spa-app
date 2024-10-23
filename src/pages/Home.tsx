@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import { t } from 'i18next';
+import  { FC } from 'react';
 
 const HomePage: FC = () => {
   return (
-    <section className="text-center bg-green-500">
-      <h1 className="text-sm mt-20">به سامانه احراز هویت راین خوش آمدید</h1>
-      <p className="mb-4">راین سیستم</p>
+    <section className="text-center">
+      <h1 className="text-sm mt-20">{t('welcome')}</h1>
+      <p className="mb-4">{t('raynSystem')}</p>
      
     </section>
   );
