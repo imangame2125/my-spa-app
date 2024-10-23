@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const HomePage: React.FC = () => {
+const HomePage: FC = () => {
   return (
     <section className="text-center bg-green-500">
       <h1 className="text-sm mt-20">به سامانه احراز هویت راین خوش آمدید</h1>
