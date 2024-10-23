@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from '../../pages/Header'
-import Footer from '../../pages/Footer'
+import Header from '../Header/Header'
+import Navbar from '../Navbar/Navbar';
 
 const Layout: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const Layout: React.FC = () => {
       <main className="mx-4 mt-16 overflow-y-auto">
         <Outlet />
       </main>
-      <Footer />
+      <Navbar />
     </div>
   );
 };
