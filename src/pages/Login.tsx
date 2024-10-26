@@ -1,5 +1,5 @@
 import React, { FC, FormEvent, useState } from "react";
-import Logo from "../../src/assests/images/logo-logo.png";
+import Logo from "../../src/assests/images/login.png";
 import { useNavigate } from "react-router-dom";
 import { t } from "i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,6 +54,7 @@ const LoginPage: FC = () => {
 
                 <div className="mt-4 w-full sm:mx-auto lg:w-96">
                     <button
+                    className="h-12 w-full rounded-lg px-4 py-2 bg-[#629584] text-green-100 hover:bg-[#243642] duration-300"
                         onClick={handleSubmit}
                     >
                     {t('enter')}

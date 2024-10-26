@@ -1,4 +1,3 @@
-// src/store/auth/auth-slice.ts
 import { createSlice, PayloadAction, } from '@reduxjs/toolkit';
 import { userLogin } from './auth-extra-reducers';
 import initialState from './auth-initialState';

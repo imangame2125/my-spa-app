@@ -1,4 +1,3 @@
-// src/store/auth/auth-reducers.ts
 import { PayloadAction } from '@reduxjs/toolkit';
 import { AuthInitialState } from './auth-type';
 

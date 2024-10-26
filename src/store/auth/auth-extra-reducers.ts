@@ -1,4 +1,3 @@
-// src/store/auth/auth-extra-reducers.ts
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AuthUrls } from './auth-url';
