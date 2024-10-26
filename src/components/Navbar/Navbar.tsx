@@ -5,9 +5,12 @@ import { GrSystem } from "react-icons/gr";
 import { CpuSetting, LogoutCurve, User } from 'iconsax-react';
 import NavItem from './NavItem';
 import { t } from 'i18next';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
 
   const handleLogOut = () => {
     navigate('/login');
@@ -19,6 +22,8 @@ const Navbar: React.FC = () => {
         <ul className="flex items-center justify-around border-t-gray-100">
           <NavItem icon={User} label={t('users')} to="/users" />
           <NavItem icon={GrSystem} label={t('systems')}to="/systems" />
+          <NavItem icon={User} label={currentUser ? currentUser.name : t('guest')} to="/" />
+
           <NavItem icon={CpuSetting} label={t('subsystems')} to="/sub-systems" />
           <li className='text-sm text-black' onClick={handleLogOut}>
             <IconElement icon={LogoutCurve} className='w-6 h-6 my-2' />

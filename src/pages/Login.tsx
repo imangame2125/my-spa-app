@@ -1,27 +1,30 @@
-import React, { FC, useState } from "react";
+import React, { FC, FormEvent, useState } from "react";
 import Logo from "../../src/assests/images/login.png";
 // import LoginBackground from "../../src/assests/images/backround-login.png";
 import { User } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import IconElement from "../components/IconElement/IconElement";
 import { t } from "i18next";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../store/slices/authSlice";
 
 const LoginPage: FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const mockUsers = [
     {
-      name: "iman",
+      name: "ایمان فراهانی",
       password: "1234",
       icon: <IconElement icon={User} className="w-10 h-10" />,
     },
     {
-      name: "ali",
+      name: "علی نادری",
       password: "12345",
       icon: <IconElement icon={User} className="w-10 h-10" />,
     },
     {
-      name: "nader",
+      name: "نادر عباسی",
       password: "1234567",
       icon: <IconElement icon={User} className="w-10 h-10" />,
     },
@@ -30,7 +33,7 @@ const LoginPage: FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     const enteredUsername = username.toLowerCase();
     const enteredPassword = password;
@@ -40,6 +43,7 @@ const LoginPage: FC = () => {
     );
 
     if (user && user.password === enteredPassword) {
+      dispatch(setCurrentUser(user));
       navigate("/");
       console.log("Login successful for user:", user.name);
     } else {
