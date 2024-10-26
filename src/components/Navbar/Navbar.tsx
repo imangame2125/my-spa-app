@@ -20,14 +20,14 @@ const Navbar: React.FC = () => {
     <nav className="h-18 bg-white fixed bottom-0 right-0 z-50 w-full border-t border-gray-200 shadow-md">
       <div className="container mx-auto text-center">
         <ul className="flex items-center justify-around border-t-gray-100">
-          <NavItem icon={User} label={t('users')} to="/users" />
+          <NavItem icon={User} label={currentUser ? currentUser.name : t('guest')}  />
           <NavItem icon={GrSystem} label={t('systems')}to="/systems" />
-          <NavItem icon={User} label={currentUser ? currentUser.name : t('guest')} to="/" />
 
           <NavItem icon={CpuSetting} label={t('subsystems')} to="/sub-systems" />
+          <NavItem icon={User} label={t('users')} to="/users" />
           <li className='text-sm text-black' onClick={handleLogOut}>
             <IconElement icon={LogoutCurve} className='w-6 h-6 my-2' />
-            <p>خروج</p>
+            <p>{t('exit')}</p>
           </li>
         </ul>
       </div>
