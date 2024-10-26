@@ -6,8 +6,6 @@
     @apply bg-gray-100 min-h-screen;
   } */
 
-body {
-  font-family: Arial, Tahoma, Geneva, Verdana, sans-serif, "Iranian Sans";
-}
-
-
+  body {
+    font-family: 'Iran Sans', sans-serif;
+  }
