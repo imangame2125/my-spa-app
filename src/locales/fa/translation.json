@@ -17,7 +17,14 @@
       "fullName":"نام و نام خانوادگی",
       "email":"ایمیل",
       "phoneNumber":"شماره تلفن",
-      "address":"آدرس"
+      "address":"آدرس",
+      "Keyword":"کیبرد",
+      "description":"توضیاحات",
+      "Center":"وسط",
+      "userSaver":"سیستم کاربر",
+      "saveData":"ذخیره اطلاعات",
+      "removed":"حذف",
+      "systemsList":"لیست سیستم ها"
 
       
  }

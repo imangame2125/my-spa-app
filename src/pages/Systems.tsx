@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSystems } from '../store/systems/system-extra-reducers';
 import { AppDispatch, RootState } from '../store';
 import { System } from '../store/systems/system-type';
+import { t } from 'i18next';
 
 const Systems = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,17 +23,17 @@ const Systems = () => {
 
   return (
     <div>
-      <h1>Systems List</h1>
+      <h1 className='my-2'>{t('systemsList')}</h1>
       <ul>
         {systems.map((system: System) => (
           <li key={system.id} className="mb-4 p-4 border border-gray-300 rounded">
             <h2 className="text-lg font-semibold">{system.name}</h2>
-            <p><strong>Keyword:</strong> {system.keyword || "N/A"}</p>
-            <p><strong>Description:</strong> {system.descr || "No description available"}</p>
-            <p><strong>Center:</strong> {system.isCenter ? "Yes" : "No"}</p>
-            <p><strong>Saved by User ID:</strong> {system.userSaver}</p>
-            <p><strong>Save Date:</strong> {new Date(system.saveDate).toLocaleString()}</p>
-            <p><strong>Removed:</strong> {system.isRemove ? "Yes" : "No"}</p>
+            <p><strong>{t('Keyword:')}</strong> {system.keyword || "N/A"}</p>
+            <p><strong>{t('description')}:</strong> {system.descr || "No description available"}</p>
+            <p><strong>{t('center')}:</strong> {system.isCenter ? "Yes" : "No"}</p>
+            <p><strong>{t('userSaver')}:</strong> {system.userSaver}</p>
+            <p><strong>{t('saveData')}:</strong> {new Date(system.saveDate).toLocaleString()}</p>
+            <p><strong>{t('removed')}:</strong> {system.isRemove ? "Yes" : "No"}</p>
           </li>
         ))}
       </ul>
@@ -41,3 +42,4 @@ const Systems = () => {
 };
 
 export default Systems;
+  

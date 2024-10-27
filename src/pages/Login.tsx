@@ -23,7 +23,8 @@ const LoginPage: FC = () => {
             if (token) {
                 localStorage.setItem("authToken", token); 
                 
-                navigate("/systems", { state: { loggedIn: true } });
+                // Change this line to navigate to the root route
+                navigate("/", { state: { loggedIn: true } });
             }
         } else {
             console.error("Login failed:", resultAction.error.message);
