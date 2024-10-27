@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../store/user/user-extra-reducers";
-import { AppDispatch, RootState } from "../store/store";
 import { t } from "i18next";
+import { AppDispatch, RootState } from "../store";
 
 const Users: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();

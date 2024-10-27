@@ -1,10 +1,10 @@
 import React, { FC, FormEvent, useState } from "react";
-import Logo from "../../src/assests/images/login.png";
+import Logo from "../assests/images/login.png";
 import { useNavigate } from "react-router-dom";
 import { t } from "i18next";
-import { userLogin } from "../store/auth/auth-extra-reducers";
-import { AppDispatch } from "../store/store";
+import { userLogin } from "../store/auth/auth-extra-reducers"; // Ensure this action properly manages the token
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
 
 const LoginPage: FC = () => {
     const navigate = useNavigate();
@@ -13,15 +13,22 @@ const LoginPage: FC = () => {
     const [mobile, setMobile] = useState(""); 
     const [password, setPassword] = useState("");
 
-
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         
-        await dispatch(userLogin({ mobile, password }));
+        // Dispatch userLogin and wait for it to complete
+        const resultAction = await dispatch(userLogin({ mobile, password }));
 
-        const token = localStorage.getItem("authToken");
-        if (token) {
-            navigate("/", { state: { loggedIn: true } });
+        // Check if the action was fulfilled successfully
+        if (userLogin.fulfilled.match(resultAction)) {
+            const token = resultAction.payload.token; // Adjust according to your API response
+            if (token) {
+                localStorage.setItem("authToken", token); // Save the token in localStorage
+                navigate("/", { state: { loggedIn: true } });
+            }
+        } else {
+            // Handle login error if needed
+            console.error("Login failed:", resultAction.error.message);
         }
     };
 
@@ -32,7 +39,6 @@ const LoginPage: FC = () => {
                     <img src={Logo} alt="logo" className="w-full rounded-lg" />
                 </div>
                 <p className="text-base font-normal mb-4">{t('welcome')}</p>
-
 
                 <div className="rounded-lg shadow-md w-full lg:mx-auto xl:mx-auto sm:mx-auto lg:w-96">
                     <input
@@ -53,10 +59,10 @@ const LoginPage: FC = () => {
 
                 <div className="mt-4 w-full sm:mx-auto lg:w-96">
                     <button
-                    className="h-12 w-full rounded-lg px-4 py-2 bg-[#629584] text-green-100 hover:bg-[#243642] duration-300"
+                        className="h-12 w-full rounded-lg px-4 py-2 bg-[#629584] text-green-100 hover:bg-[#243642] duration-300"
                         onClick={handleSubmit}
                     >
-                    {t('enter')}
+                        {t('enter')}
                     </button>
                 </div>
             </div>

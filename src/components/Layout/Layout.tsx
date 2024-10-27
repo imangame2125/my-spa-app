@@ -1,6 +1,7 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from '../Header/Header'
+// src/components/Layout/Layout.tsx
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 
 const Layout: React.FC = () => {
