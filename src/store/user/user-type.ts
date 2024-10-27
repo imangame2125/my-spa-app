@@ -1,4 +1,3 @@
-// src/store/auth/auth-type.ts
 
 export type UserRole = {
     id: string;

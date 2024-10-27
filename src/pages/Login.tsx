@@ -2,9 +2,9 @@ import React, { FC, FormEvent, useState } from "react";
 import Logo from "../../src/assests/images/login.png";
 import { useNavigate } from "react-router-dom";
 import { t } from "i18next";
-import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../store/auth/auth-extra-reducers";
-import { AppDispatch, RootState } from "../store/store";
+import { AppDispatch } from "../store/store";
+import { useDispatch } from "react-redux";
 
 const LoginPage: FC = () => {
     const navigate = useNavigate();
@@ -13,7 +13,6 @@ const LoginPage: FC = () => {
     const [mobile, setMobile] = useState(""); 
     const [password, setPassword] = useState("");
 
-    useSelector((state: RootState) => state.auth.currentUser);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();

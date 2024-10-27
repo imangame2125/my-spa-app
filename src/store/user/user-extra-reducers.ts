@@ -3,15 +3,25 @@ import axios from 'axios';
 import { UserResponse } from './user-type';
 import { UserUrl } from './user-url';
 
-export const fetchUsers = createAsyncThunk<UserResponse[], void>(
-    'auth/fetchUsers',
+export const fetchUsers = createAsyncThunk<UserResponse[]>(
+    'user/fetchUsers',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get<UserResponse[]>(UserUrl.User); 
+            const token = localStorage.getItem('authToken');
+
+            if (!token) {
+                return rejectWithValue('Authentication token is missing');
+            }
+
+            const response = await axios.get(UserUrl.User, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
             return response.data;
         } catch (error: any) {
-            const errorMessage = error.response?.data?.message || error.message || "Failed to fetch users";
-            return rejectWithValue(errorMessage);
+            return rejectWithValue(error.response?.data || 'Failed to fetch users');
         }
     }
 );
