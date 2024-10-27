@@ -22,14 +22,14 @@ const LoginPage: FC = () => {
             const token = resultAction.payload?.token; 
             if (token) {
                 localStorage.setItem("authToken", token); 
-                
-                // Change this line to navigate to the root route
                 navigate("/", { state: { loggedIn: true } });
             }
         } else {
             console.error("Login failed:", resultAction.error.message);
         }
     };
+
+
 
     return (
         <section className="min-h-screen flex w-full h-full xl:overflow-hidden">

@@ -1,25 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store";
+import { setInstallPrompt } from "../store/pwa/pwa-slice";
 
 export const usePWAInstallPrompt = () => {
-  const [installPromptEvent, setInstallPromptEvent] = useState<Event | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+    console.log("beforeinstallprompt event not fired");
     const handleBeforeInstallPrompt = (event: Event) => {
+      console.log("beforeinstallprompt event fired");
+      
       event.preventDefault(); 
-      setInstallPromptEvent(event);
+      dispatch(setInstallPrompt(event));
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
     return () => window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-  }, []);
-
-  const showInstallPrompt = () => {
-    if (installPromptEvent) {
-      (installPromptEvent as any).prompt(); 
-      setInstallPromptEvent(null); 
-    }
-  };
-
-  return { showInstallPrompt, isInstallPromptAvailable: !!installPromptEvent };
+  }, [dispatch]);
 };

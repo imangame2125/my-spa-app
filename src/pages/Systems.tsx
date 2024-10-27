@@ -4,9 +4,11 @@ import { fetchSystems } from "../store/systems/system-extra-reducers";
 import { AppDispatch, RootState } from "../store";
 import { System } from "../store/systems/system-type";
 import { t } from "i18next";
+import { useNavigate } from "react-router-dom";
 
 const Systems = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate  = useNavigate()
 
   const systems = useSelector((state: RootState) => state.system.systems);
   const loading = useSelector((state: RootState) => state.system.loading);
@@ -16,6 +18,10 @@ const Systems = () => {
     dispatch(fetchSystems());
   }, [dispatch]);
 
+  const handleNavigateToSubSystem = (id:string) => {
+    navigate(`/sub-systems/${id}`)
+  }
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -24,7 +30,7 @@ const Systems = () => {
       <h1 className="my-2">{t("systemsList")}</h1>
       <ul>
         {systems.map((system: System) => (
-          <li
+          <li onClick={()=>handleNavigateToSubSystem(system.id!)}
             key={system.id}
             className="mb-4 p-4 border border-gray-300 rounded"
           >
@@ -49,7 +55,6 @@ const Systems = () => {
             <p>
               <strong>{t("removed")}:</strong> {system.isRemove ? "Yes" : "No"}
             </p>
-            <a href={`sub-systems/${system.id}`}>abbbas</a>
           </li>
         ))}
       </ul>

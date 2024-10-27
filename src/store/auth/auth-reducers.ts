@@ -1,9 +1,13 @@
-import { PayloadAction } from '@reduxjs/toolkit';
-import { AuthInitialState } from './auth-type';
+import { PayloadAction } from "@reduxjs/toolkit";
+import { LoginInitialState, UserLoginResponse } from "./auth-type";
 
 const authReducers = {
-  setMobileNumber: (state: AuthInitialState, action: PayloadAction<string>) => {
-    state.mobileNumber = action.payload;
+  setUserData: (
+    state: LoginInitialState,
+    action: PayloadAction<UserLoginResponse>
+  ) => {
+    state.token = action.payload.token;
+    state.userId = action.payload.userId;
   },
 };
 

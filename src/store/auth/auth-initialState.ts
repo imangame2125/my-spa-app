@@ -1,12 +1,11 @@
-import { AuthInitialState } from './auth-type';
+import { LoginInitialState } from './auth-type';
 
-const initialState: AuthInitialState = {
-  mobileNumber: '',
-  userLogin: {
-    loading: false,
-    data: null,
-    error: null,
-  },
+const initialState: LoginInitialState = {
+  loading: false,
+  userId: '',
+  token: '',
+  error: null,
+  fullname: '',
 };
 
 export default initialState;

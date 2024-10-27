@@ -1,31 +1,35 @@
 import { FC, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { t } from "i18next";
-import { usePWAInstallPrompt } from "../pwa/usePWAInstallPrompt ";
 import Modal from "../components/modal/@types/Modal";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 const HomePage: FC = () => {
-  const location = useLocation();
-  const { loggedIn } = location.state || {}; 
+  const userData = useSelector((state: RootState) => state.auth);
+  const pwaState = useSelector((state: RootState) => state.pwa);
+
   const [showModal, setShowModal] = useState(false);
-  const { showInstallPrompt, isInstallPromptAvailable } = usePWAInstallPrompt();
+  
 
   useEffect(() => {
-    if (loggedIn) {
+    const pwaInstallationRefused = localStorage.getItem('pwaInstallationRefused') === 'true';
+    
+    if (userData?.userId && pwaState.installPromptEvent && !pwaState.installed && !pwaInstallationRefused) {
       const timer = setTimeout(() => {
         setShowModal(true); 
       }, 3000); 
       return () => clearTimeout(timer);
     }
-  }, [loggedIn]);
+  }, [userData, pwaState]);
 
   const handleCloseModal = () => {
-    setShowModal(false); 
+    setShowModal(false);
+    localStorage.setItem('pwaInstallationRefused', 'true');
   };
 
   const handleInstallApp = () => {
-    if (isInstallPromptAvailable) {
-      showInstallPrompt(); 
+    if (!pwaState.installed && pwaState.installPromptEvent) {
+      (pwaState.installPromptEvent as any).prompt(); 
       setShowModal(false); 
     } else {
       console.log('درخواست نصب در دسترس نیست'); 

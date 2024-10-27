@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/Login";
 import HomePage from "./pages/Home";
@@ -7,8 +7,11 @@ import Systems from "./pages/Systems";
 import SubSystems from "./pages/SubSystems";
 import Layout from "./components/Layout/Layout";
 import PrivateRoute from "./components/PrivateRoute";
+import { usePWAInstallPrompt } from "./pwa/usePWAInstallPrompt ";
 
 function App() {
+  usePWAInstallPrompt();
+
   return (
     <Router>
       <Routes>

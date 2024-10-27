@@ -4,8 +4,11 @@ import { GrSystem } from "react-icons/gr";
 import { CpuSetting, User } from "iconsax-react";
 import NavItem from "./NavItem";
 import { t } from "i18next";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Navbar: FC = () => {
+  const fullname = useSelector((state: RootState) => state.auth.fullname);
   const navigate = useNavigate();
 
   const handleLogOut = () => {
@@ -18,10 +21,10 @@ const Navbar: FC = () => {
       <div className="container mx-auto text-center">
         <ul className="flex items-center justify-around border-t-gray-100">
           <div>
-           
             <p  onClick={handleLogOut} className="text-sm border-t-2 my-1 border-gray-100">
               {t("exit")}
             </p>
+           <p>{fullname}</p>
           </div>
           <NavItem icon={GrSystem} label={t("systems")} to="/systems" />
           <NavItem
