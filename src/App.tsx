@@ -13,13 +13,13 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        
+
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="users" element={<Users />} />
             <Route path="systems" element={<Systems />} />
-            <Route path="sub-systems" element={<SubSystems />} />
+            <Route path="sub-systems/:systemId" element={<SubSystems />} />
           </Route>
         </Route>
       </Routes>
