@@ -1,4 +1,3 @@
-// src/store/systems/system-type.ts
 export interface System {
   isCenter: boolean;
   descr: string | null; 

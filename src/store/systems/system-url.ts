@@ -1,4 +1,4 @@
-
-export const SystemUrl = {
-GetAllSystems: '/System/GetAll'
-};
+export const API_URLS = {
+    getAllSystems: '/System/GetAll',
+  };
+  

@@ -1,4 +1,3 @@
-// src/store/systems/system-reducers.ts
 
 import { createSlice } from '@reduxjs/toolkit';
 import { systemInitialState } from './system-initialState';

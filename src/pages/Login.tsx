@@ -1,8 +1,8 @@
 import React, { FC, FormEvent, useState } from "react";
-import Logo from "../assests/images/login.png";
+import Logo from "../assests/images/login.png"; 
 import { useNavigate } from "react-router-dom";
 import { t } from "i18next";
-import { userLogin } from "../store/auth/auth-extra-reducers"; // Ensure this action properly manages the token
+import { userLogin } from "../store/auth/auth-extra-reducers"; 
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
 
@@ -16,18 +16,16 @@ const LoginPage: FC = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         
-        // Dispatch userLogin and wait for it to complete
         const resultAction = await dispatch(userLogin({ mobile, password }));
 
-        // Check if the action was fulfilled successfully
         if (userLogin.fulfilled.match(resultAction)) {
-            const token = resultAction.payload.token; // Adjust according to your API response
+            const token = resultAction.payload?.token; 
             if (token) {
-                localStorage.setItem("authToken", token); // Save the token in localStorage
-                navigate("/", { state: { loggedIn: true } });
+                localStorage.setItem("authToken", token); 
+                
+                navigate("/systems", { state: { loggedIn: true } });
             }
         } else {
-            // Handle login error if needed
             console.error("Login failed:", resultAction.error.message);
         }
     };

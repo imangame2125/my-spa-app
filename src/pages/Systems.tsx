@@ -1,42 +1,43 @@
-// src/components/Systems.tsx
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../store/index';
 import { fetchSystems } from '../store/systems/system-extra-reducers';
+import { AppDispatch, RootState } from '../store';
+import { System } from '../store/systems/system-type';
 
-const Systems: React.FC = () => {
+const Systems = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { systems, loading, error } = useSelector((state: RootState) => state.system);
+
+  // Select systems data, loading, and error from Redux state
+  const systems = useSelector((state: RootState) => state.system.systems);
+  const loading = useSelector((state: RootState) => state.system.loading);
+  const error = useSelector((state: RootState) => state.system.error);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    console.log('Token:', token); // Check if the token is retrieved
-
-    if (token) {
-      console.log('Dispatching fetchSystems...');
-      dispatch(fetchSystems()).catch((error) => {
-        console.error('Error fetching systems:', error); // Log any errors from dispatch
-      });
-    } else {
-      console.error('No token found. Please log in again.');
-    }
+    dispatch(fetchSystems());
   }, [dispatch]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  // Render loading, error, or systems list
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
-      <h2>سیستم ها</h2>
-      {systems.map((system) => (
-        <div key={system.id}>
-          <h3>{system.name}</h3>
-          <p>{system.descr}</p>
-          <p>{system.keyword}</p>
-        </div>
-      ))}
+      <h1>Systems List</h1>
+      <ul>
+        {systems.map((system: System) => (
+          <li key={system.id} className="mb-4 p-4 border border-gray-300 rounded">
+            <h2 className="text-lg font-semibold">{system.name}</h2>
+            <p><strong>Keyword:</strong> {system.keyword || "N/A"}</p>
+            <p><strong>Description:</strong> {system.descr || "No description available"}</p>
+            <p><strong>Center:</strong> {system.isCenter ? "Yes" : "No"}</p>
+            <p><strong>Saved by User ID:</strong> {system.userSaver}</p>
+            <p><strong>Save Date:</strong> {new Date(system.saveDate).toLocaleString()}</p>
+            <p><strong>Removed:</strong> {system.isRemove ? "Yes" : "No"}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
 
 export default Systems;
