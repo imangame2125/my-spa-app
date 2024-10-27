@@ -1,15 +1,16 @@
-import React from "react";
+import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { GrSystem } from "react-icons/gr";
 import { CpuSetting, User } from "iconsax-react";
 import NavItem from "./NavItem";
 import { t } from "i18next";
 
-const Navbar: React.FC = () => {
+const Navbar: FC = () => {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
-    navigate("/login");
+    localStorage.removeItem("authToken");  
+    navigate("/login");  
   };
 
   return (
