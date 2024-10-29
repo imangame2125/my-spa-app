@@ -24,7 +24,9 @@
       "userSaver":"سیستم کاربر",
       "saveData":"ذخیره اطلاعات",
       "removed":"حذف",
-      "systemsList":"لیست سیستم ها"
+      "systemsList":"لیست سیستم ها",
+      "date":"تاریخ",
+      "city":"شهر"
 
       
  }

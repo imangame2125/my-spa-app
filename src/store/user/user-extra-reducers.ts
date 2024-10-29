@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { UserResponse } from './user-type';
 import { UserUrl } from './user-url';
+import axiosInstance from '../axios';
 
 export const fetchUsers = createAsyncThunk<UserResponse[]>(
     'user/fetchUsers',
@@ -13,7 +13,7 @@ export const fetchUsers = createAsyncThunk<UserResponse[]>(
                 return rejectWithValue('Authentication token is missing');
             }
 
-            const response = await axios.get(UserUrl.User, {
+            const response = await axiosInstance.get(UserUrl.User, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
